@@ -392,9 +392,13 @@ public class Assignment2
 
 		if (help || ln == null || sm == null) {
             printHelp();
+			return;
         }
 
-		String sanitized = sanitize(ln == null ? "" : ln);
+		// Case where both flags are present but the list string is empty
+		if (ln.trim().isEmpty()) { System.out.println("Missing arguments"); return; }
+
+		String sanitized = sanitize(ln);
         if (sanitized.isEmpty()) {
             printHelp();
             return;
@@ -405,11 +409,11 @@ public class Assignment2
         try {
             mode = Integer.parseInt(sm);
         } catch (NumberFormatException e) {
-            printHelp();
+            System.out.println("The response is: Invalid option");
             return;
         }
         if (mode < 1 || mode > 4) {
-            printHelp();
+            System.out.println("The response is: Invalid option");
             return;
         }
 
