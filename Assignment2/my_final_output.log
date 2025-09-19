@@ -1,0 +1,337 @@
+--- Running Comprehensive Verification Suite (100 Tests) ---
+
+--- Category 1: Basic Valid Inputs ---
+The Mean is: 20.0
+The Mean is: 5.0
+The Median is: 3.0
+The Median is: 2.5
+The Mode is: 6
+The Mode is: 1 2 3 4 5
+The Mean is: 13.333333333333334
+The Median is: 10.0
+The Mode is: 10
+The Mean is: 2.4
+The Median is: 2.0
+The Mode is: 1
+The Mean is: -13.333333333333334
+The Median is: -10.0
+The Mode is: -10
+The Mean is: 0.0
+The Median is: 0.0
+The Mode is: 0
+
+--- Category 2: Input Sanitizing and Formatting ---
+The Mean is: 2.5
+The Mean is: 2.5
+The Mean is: 2.5
+The Mean is: 1.5
+The Mean is: 2.0
+The Mean is: 2.0
+The Mean is: 2.0
+The Mean is: 2.0
+The Mean is: -2.0
+The Mean is: 2.0
+The Mode is: 0.5
+The Mean is: 3.3
+The Mean is: 1.5
+The Mean is: 1.5
+The Mean is: 5.0
+The Mean is: 5.0
+The Mean is: -5.0
+The Mean is: 1.5
+The Mean is: -0.5
+The Mean is: 8.166666666666666
+The Median is: 8.0
+The Mode is: 7 8 9.5
+Missing arguments
+The Mean is: 2.0
+Missing arguments
+Missing arguments
+Missing arguments
+
+--- Category 3: Boundary and Edge Cases ---
+The Mean is: 42.0
+The Median is: 42.0
+The Mode is: 42
+Missing arguments
+The Median is: 1.5
+The Mean is: 0.0
+The Median is: 0.0
+The Mode is: 0
+The Mean is: -10.0
+The Median is: -10.0
+The Mode is: -10
+The Mean is: 1.5E9
+The Mean is: -1.5E9
+The Mean is: 0.0
+The Median is: 0.0
+The Mode is: 0
+The Mean is: 7.0
+The Median is: 7.0
+The Mode is: 7
+The Mode is: 5
+The Mode is: 5
+The Mode is: 5
+The Mode is: -3
+The Mode is: 10.1
+The Mode is: 10
+The Mode is: 1 2 3
+The Mode is: 1 2 3 4
+The Mode is: 1 2
+Missing arguments
+Missing arguments
+Missing arguments
+Missing arguments
+Missing arguments
+Missing arguments
+
+--- Category 4: Invalid Argument Handling ---
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+The response is: Invalid option
+The response is: Invalid option
+The response is: Invalid option
+The response is: Invalid option
+The response is: Invalid option
+The response is: Invalid option
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+The Mean is: 2.0
+The Mean is: 3.5
+The Median is: 1.5
+java Assignment2
+Arguments
+   -ln, --list-of-numbers
+          List of numbers to compute statistics with
+
+   -sm, --statistics-mode
+          Statistics to apply to the list of numbers. Options are:
+         1. Calculate Mean
+         2. Calculate Median
+         3. Calculate Mode
+         4. Print All Computed Averages
+
+   -h, --help
+         Prints this message
+
+
+The Mean is: 1.5
+The Mean is: 1.5
+The Mean is: 2.0
+The Median is: 2.0
+The Mode is: 1 2 3
+
+--- Category 5: Complex and Combined Cases ---
+The Mean is: 3.5
+The Median is: 3.5
+The Mode is: 1 2 3 4 5 6
+The Mode is: 0.1
+The Mode is: 1 2 100
+The Mean is: 5.0E15
+The Mode is: 0
+The Mode is: 2
+The Median is: 10.5
+The Median is: 10.5
+The Mean is: 5.0
+The Median is: 5.0
+The Mode is: 5
+The Mode is: 1
+The Mean is: 2.5
+The Mean is: 2.0
+The Mode is: 8 9
+The Mean is: 0.0
+The Median is: 0.0
+The Mode is: -1.5 1.5
+The Mean is: 200.0
+The Median is: 200.0
+The Mode is: 100 200 300
+
+--- Comprehensive Suite Complete ---
