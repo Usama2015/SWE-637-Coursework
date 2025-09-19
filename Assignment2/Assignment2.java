@@ -492,13 +492,6 @@ public class Assignment2 {
 			return;
 		}
 
-		// CHANGE 4
-		if (mode < 1 || mode > 4) {
-			// printHelp();
-			System.out.println("The response is: Invalid option");
-			return;
-		}
-
 		// CHANGE 6
 		switch (mode) {
 			case 1 -> System.out.println("The Mean is: " + getMeanValue(nums));
@@ -509,7 +502,10 @@ public class Assignment2 {
 				System.out.println("The Median is: " + getMedianValue(nums));
 				System.out.println("The Mode is: " + getModeList(nums));
 			}
-			// default -> printHelp(); // CHANGE 4: commented out because this is redundant.
+			default -> {
+				System.out.println("The response is: Invalid option");
+			return;
+			}
 		}
 	}
 } // End class
