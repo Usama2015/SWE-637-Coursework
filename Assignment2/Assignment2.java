@@ -354,7 +354,7 @@ public class Assignment2
 	    }
     }
 
-	//This will be the new CLI front end for the help option
+	// This will be the new CLI front end for the help option
 	private static void printHelp() {
 		System.out.println("java Assignment2");
 		System.out.println("Arguments");
@@ -374,14 +374,28 @@ public class Assignment2
 		System.out.println();
 	}
 
+	/**
+	 * This is the main method, intended for testing and modification purposes.
+	 * @param args command line arguments.
+	 */
 	public static void main(String[] args) {
+
+		// CHANGE 1
+		if (args.length == 0) { 
+			printHelp();
+			return;
+		}
+
+		// ln is list of numbers.
 		String ln = null;
+		// sm is statistics mode.
 		String sm = null;
 		boolean help = false;
 
 		for (int i = 0; i < args.length; i++) {
 			String a = args[i];
 			if ("-h".equals(a) || "--help".equals(a)) {
+				// updating help to true
 				help = true;
 			} else if ("-ln".equals(a) || "--list-of-numbers".equals(a)) {
 				if ( i + 1 < args.length) ln = args[++i];
@@ -390,29 +404,43 @@ public class Assignment2
 			}
 		}
 
-		if (help || ln == null || sm == null) {
+		// CHANGE 2
+		if (help) {
             printHelp();
+			return;
         }
+		if (ln == null || sm == null) {
+			printHelp();
+			return;
+		}
 
+		// CHANGE 3
 		String sanitized = sanitize(ln == null ? "" : ln);
         if (sanitized.isEmpty()) {
-            printHelp();
+			// printHelp();
+			System.out.println("Missing arguments");
             return;
         }
         String[] nums = sanitized.split(" ");
 
 		int mode;
+		// CHANGE 5
         try {
             mode = Integer.parseInt(sm);
         } catch (NumberFormatException e) {
-            printHelp();
-            return;
-        }
-        if (mode < 1 || mode > 4) {
-            printHelp();
+			// printHelp();
+            System.out.println("The response is: Invalid option");
             return;
         }
 
+		// CHANGE 4
+        if (mode < 1 || mode > 4) {
+			// printHelp();
+            System.out.println("The response is: Invalid option"); 
+            return;
+        }
+
+		// CHANGE 6
         switch (mode) {
             case 1 -> System.out.println("The Mean is: " + getMeanValue(nums));
             case 2 -> System.out.println("The Median is: " + getMedianValue(nums));
@@ -422,7 +450,7 @@ public class Assignment2
                 System.out.println("The Median is: " + getMedianValue(nums));
                 System.out.println("The Mode is: " + getModeList(nums.clone()));
             }
-            default -> printHelp();
+            // default -> printHelp(); // CHANGE 4: commented out because this is redundant.
         }
 	}
 }  // End class
