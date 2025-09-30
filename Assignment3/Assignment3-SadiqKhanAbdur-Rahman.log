@@ -1,0 +1,218 @@
+java Assignment3
+    Arguments
+        -ln, --list-of-numbers
+            List of numbers to compute statistics with
+
+        -sm, --statistics-mode
+            Statistics to apply to the list of numbers. Options are:
+            1. Calculate Mean
+            2. Calculate Median
+            3. Calculate Mode
+            4. Calculate Standard Deviation
+            5. Print All Computed Averages
+            6. Quit
+
+        -h, --help
+            Prints this message
+
+        -im, --interactive-mode
+            Triggers the interactive mode from Assignment 2
+
+
+
+
+
+java Assignment3
+    Arguments
+        -ln, --list-of-numbers
+            List of numbers to compute statistics with
+
+        -sm, --statistics-mode
+            Statistics to apply to the list of numbers. Options are:
+            1. Calculate Mean
+            2. Calculate Median
+            3. Calculate Mode
+            4. Calculate Standard Deviation
+            5. Print All Computed Averages
+            6. Quit
+
+        -h, --help
+            Prints this message
+
+        -im, --interactive-mode
+            Triggers the interactive mode from Assignment 2
+
+
+
+
+
+Missing arguments
+
+
+
+
+
+Missing arguments
+
+
+
+
+
+The Mean is: 85.0
+
+
+
+
+
+The Median is: 85.0
+
+
+
+
+
+The Median is: 4.0
+
+
+
+
+
+java Assignment3
+    Arguments
+        -ln, --list-of-numbers
+            List of numbers to compute statistics with
+
+        -sm, --statistics-mode
+            Statistics to apply to the list of numbers. Options are:
+            1. Calculate Mean
+            2. Calculate Median
+            3. Calculate Mode
+            4. Calculate Standard Deviation
+            5. Print All Computed Averages
+            6. Quit
+
+        -h, --help
+            Prints this message
+
+        -im, --interactive-mode
+            Triggers the interactive mode from Assignment 2
+
+
+
+
+
+The Mode is: 80.0 90.0
+
+
+
+
+
+The Mode is: 2.5 3.5
+
+
+
+
+
+The Mode is: 0.5 1.5 3.0 5.0
+
+
+
+
+
+The Mode is: 1.0 2.0
+
+
+
+
+
+The Standard Deviation is: 13.9
+
+
+
+
+
+The Mean is: 4.0
+The Median is: 4.0
+The Mode is: 3.0 4.0 5.0
+The Standard Deviation is: 0.8
+
+
+
+
+
+Enter numbers (with or without decimal fractions):
+1 2 3 4 5
+
+Compute numeric statistics:
+ 1) Calculate Mean
+ 2) Calculate Median
+ 3) Calculate Mode
+ 4) Calculate Standard Deviation
+ 5) Print All Computed Averages
+ 6) Quit
+
+What do you want to do? 5
+The Mean is: 3.0
+The Median is: 3.0
+The Mode is: 1.0 2.0 3.0 4.0 5.0
+The Standard Deviation is: 1.4
+
+
+
+
+
+The Mean is: 6.2
+The Median is: 7.0
+The Mode is: 3.0 7.0 8.5
+The Standard Deviation is: 2.3
+
+
+
+
+
+java Assignment3
+    Arguments
+        -ln, --list-of-numbers
+            List of numbers to compute statistics with
+
+        -sm, --statistics-mode
+            Statistics to apply to the list of numbers. Options are:
+            1. Calculate Mean
+            2. Calculate Median
+            3. Calculate Mode
+            4. Calculate Standard Deviation
+            5. Print All Computed Averages
+            6. Quit
+
+        -h, --help
+            Prints this message
+
+        -im, --interactive-mode
+            Triggers the interactive mode from Assignment 2
+
+
+
+
+
+Enter numbers (with or without decimal fractions):
+
+Compute numeric statistics:
+ 1) Calculate Mean
+ 2) Calculate Median
+ 3) Calculate Mode
+ 4) Calculate Standard Deviation
+ 5) Print All Computed Averages
+ 6) Quit
+
+What do you want to do? The Mean is: 2.0
+
+
+
+
+
+The response is: Good Bye :)
+
+
+
+
+
+The response is: Invalid option
