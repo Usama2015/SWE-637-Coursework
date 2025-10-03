@@ -1,0 +1,19 @@
++-- compute()
+|
++-----> sanitize()
+|
++-----> getMeanValue()
+|
++-----> getMedianValue()
+|         |
+|         +-----> medianGetMidValue()
+|
++-----> getModeList()
+          |
+          +-----> makeUniform()
+          |
+          +-----> modePopulateMap()
+          |
+          +-----> modeGetOrderedMode()
+                    |
+                    +-----> makeUniform()
