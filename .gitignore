@@ -6,3 +6,6 @@ target/
 
 # macOS system files
 .DS_Store
+
+# Claude Code
+.claude/
