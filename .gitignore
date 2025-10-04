@@ -9,3 +9,9 @@ target/
 
 # Claude Code
 .claude/
+
+# Ignore compiled Java class files
+Assignment3/*.class
+
+# Ignore library JAR files
+Assignment3/*.jar

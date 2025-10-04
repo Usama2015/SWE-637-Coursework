@@ -1,3 +1,4 @@
+
 /** *****************************************************************
  @author Jorge L Martinez & Jeff Offutt
  @author Saqiq, Khan, Abdur Rahman
@@ -15,310 +16,437 @@ import java.util.regex.Pattern;
 //@WebServlet(name = "computeAverage", urlPatterns = {"/computeAverage"})
 
 //public class Assignment2 extends HttpServlet
-public class Assignment3
-{
-    static String servletName = "computeAverage";
-/** 
-    /** ====================================================
-	====================================================
-	* Four methods to print the front screen.
-	* doGet(), printHead(), printBody(), printTail()
-	====================================================
-	==================================================== **/
-	
-    /** *****************************************************
-     * Prints an HTML page with a blank form.
-     * Front end method
-     ********************************************************* 
-    public void doGet (HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException
-    {
-	response.setContentType("text/html");
-	PrintWriter out = response.getWriter();
-	PrintHead(out);
-	PrintBody(out, "1 2.5 3 4.5 5", ""); // example inputs
-	PrintTail(out);
-    }  // End doGet
+public class Assignment3 {
+	static String servletName = "computeAverage";
 
-    /** *****************************************************
-     * Prints the <head> of the HTML page, separate from the <body>.
-     * Front end method
-     ********************************************************* 
-    private void PrintHead (PrintWriter out)
-    {
-	out.println("<html>");
-	out.println("<head>");
-	out.println(" <meta charset=\"UTF-8\">");
-	out.println(" <title>Compute average</title>");
-	out.println(" ");
-	out.println("</head>");
-    }  // End PrintHead
+	/**
+	 * /** ====================================================
+	 * ====================================================
+	 * Four methods to print the front screen.
+	 * doGet(), printHead(), printBody(), printTail()
+	 * ====================================================
+	 * ====================================================
+	 **/
 
-    /** *****************************************************
-     * Prints the <body> of the initial HTML page before
-     * the user request
-     * Front end method
-     ********************************************************* 
-    private void PrintBody (PrintWriter out, String inputStrRaw, String resultStr)
-    {
-	String cleanInput = Arrays.toString(sanitize(inputStrRaw).split(" "));
-	resultStr = "Sanitized input: " +cleanInput+ "\n" +resultStr;
+	/**
+	 * *****************************************************
+	 * Prints an HTML page with a blank form.
+	 * Front end method
+	 ********************************************************* 
+	 * public void doGet (HttpServletRequest request, HttpServletResponse response)
+	 * throws ServletException, IOException
+	 * {
+	 * response.setContentType("text/html");
+	 * PrintWriter out = response.getWriter();
+	 * PrintHead(out);
+	 * PrintBody(out, "1 2.5 3 4.5 5", ""); // example inputs
+	 * PrintTail(out);
+	 * } // End doGet
+	 * 
+	 * /** *****************************************************
+	 * Prints the <head> of the HTML page, separate from the <body>.
+	 * Front end method
+	 ********************************************************* 
+	 * private void PrintHead (PrintWriter out)
+	 * {
+	 * out.println("<html>");
+	 * out.println("<head>");
+	 * out.println(" <meta charset=\"UTF-8\">");
+	 * out.println(" <title>Compute average</title>");
+	 * out.println(" ");
+	 * out.println("</head>");
+	 * } // End PrintHead
+	 * 
+	 * /** *****************************************************
+	 * Prints the <body> of the initial HTML page before
+	 * the user request
+	 * Front end method
+	 ********************************************************* 
+	 * private void PrintBody (PrintWriter out, String inputStrRaw, String
+	 * resultStr)
+	 * {
+	 * String cleanInput = Arrays.toString(sanitize(inputStrRaw).split(" "));
+	 * resultStr = "Sanitized input: " +cleanInput+ "\n" +resultStr;
+	 * 
+	 * out.println("<body style='background-color:#fff5e6'>");
+	 * out.println("
+	 * <h1 style='text-align:center'>Compute numeric statistics</h1>");
+	 * out.println("
+	 * <p>
+	 * ");
+	 * out.println(" This is a micro web app for class use.<br/>
+	 * ");
+	 * out.println(" Enter numbers (with or without decimal fractions).<br/>
+	 * ");
+	 * out.println(" Separate by commas, spaces, or new lines.<br/>
+	 * ");
+	 * out.println(" Non-numbers are ignored.<br/>
+	 * ");
+	 * out.println("
+	 * </p>
+	 * ");
+	 * out.println("
+	 * <hr>
+	 * ");
+	 * out.println("<form id='form1' style='text-align:center' name='form1' method=
+	 * 'post' action='" +servletName+ "'>");
+	 * 
+	 * out.println("
+	 * <table align='center'>
+	 * ");
+	 * out.println("
+	 * <tr>
+	 * ");
+	 * out.println("
+	 * <td>");
+	 * out.println(" <label for='inputStrRaw' style='text-align:center;'>Enter
+	 * numbers:&emsp;</label>");
+	 * out.println("</td>
+	 * <td>");
+	 * out.println(" <textarea autofocus name='inputStrRaw' id='inputStrRaw'
+	 * rows='5' cols='30' value='string' placeholder='Enter numbers here'
+	 * >"+inputStrRaw+"</textarea><br/>
+	 * ");
+	 * out.println("</td>
+	 * </tr>
+	 * ");
+	 * out.println("
+	 * <tr>
+	 * ");
+	 * out.println("
+	 * <td>");
+	 * out.println("</td>
+	 * <td>");
+	 * out.println(" <input type='submit' name='Operation' value='Mean'/>");
+	 * out.println(" &emsp;"); // spacer
+	 * out.println(" <input type='submit' name='Operation' value='Median'/>");
+	 * out.println(" &emsp;");
+	 * out.println(" <input type='submit' name='Operation' value='Mode'/>");
+	 * out.println(" &emsp;");
+	 * out.println(" <input type='submit' name='Operation' value='Reset'/>");
+	 * out.println("</td>
+	 * </tr>
+	 * ");
+	 * out.println("
+	 * </table>
+	 * ");
+	 * 
+	 * out.println(" <br/>
+	 * ");
+	 * out.println(" <br/>
+	 * ");
+	 * out.println(" <br/>
+	 * ");
+	 * out.println(" <label for='stringOutput' style=
+	 * 'text-align:center;font-weight:bold;font-size:110%'> Result</label><br/>
+	 * ");
+	 * out.println(" <textarea name='stringOutput' id='stringOutput' cols='90'
+	 * rows='10' placeholder='---' disabled>" +resultStr+ " </textarea><br/>
+	 * ");
+	 * out.println("</form>");
+	 * out.println("<br/>
+	 * <br/>
+	 * ");
+	 * out.println("
+	 * <p style='font-weight:75%;color:gray'>
+	 * Jorge Martinez &amp; Jeff Offutt
+	 * </p>
+	 * ");
+	 * out.println("</body>");
+	 * } // End PrintBody
+	 * 
+	 * /** *****************************************************
+	 * Prints the bottom of the HTML page.
+	 * Front end method
+	 ********************************************************* 
+	 * private void PrintTail (PrintWriter out)
+	 * {
+	 * out.println("");
+	 * out.println("</html>");
+	 * } // End PrintTail
+	 */
 
-	out.println("<body style='background-color:#fff5e6'>");
-	out.println("<h1 style='text-align:center'>Compute numeric statistics</h1>");
-	out.println("<p>");
-	out.println("  This is a micro web app for class use.<br/>");
-	out.println("  Enter numbers (with or without decimal fractions).<br/>");
-	out.println("  Separate by commas, spaces, or new lines.<br/>");
-	out.println("  Non-numbers are ignored.<br/>");
-	out.println("</p>");
-	out.println("<hr>     ");
-	out.println("<form id='form1' style='text-align:center' name='form1' method='post' action='" +servletName+ "'>");
+	/**
+	 * ====================================================
+	 * ====================================================
+	 * 10 methods to process the inputs
+	 * 1 front end: doPost(),
+	 * 1 principal "main" method: compute()
+	 * 2 methods to clean up the inputs
+	 * sanitize(), makeUniform()
+	 * 1 method to compute the mean
+	 * getMeanValue()
+	 * 2 method to compute the median
+	 * getMedianValue(), medianGetMidValue()
+	 * 3 method to compute the mode
+	 * getModeList(), modeGetOrderedMode(), modePopulateMap()
+	 * ====================================================
+	 * ====================================================
+	 **/
+	/**
+	 * *****************************************************
+	 * Converts the values in the form,
+	 * performs the operation indicated,
+	 * sends the results back to the client.
+	 * Front end method
+	 ********************************************************* 
+	 * public void doPost (HttpServletRequest request, HttpServletResponse response)
+	 * throws ServletException, IOException
+	 * {
+	 * response.setContentType("text/html");
+	 * PrintWriter out = response.getWriter();
+	 * 
+	 * // get input data
+	 * String inputStrRaw = request.getParameter("inputStrRaw");
+	 * String resultStr = request.getParameter("stringOutput");
+	 * String operation = request.getParameter("Operation");
+	 * 
+	 * PrintHead(out);
+	 * if (operation.equals("Reset"))
+	 * PrintBody(out, "", ""); // reprint the form, blank
+	 * else
+	 * {
+	 * resultStr = compute(inputStrRaw, operation);
+	 * PrintBody(out, inputStrRaw, resultStr);
+	 * }
+	 * PrintTail(out);
+	 * } // End doPost
+	 */
+	/**
+	 * *****************************************************
+	 * Converts the values in the form,
+	 * performs the operation indicated,
+	 * sends the results back to the client.
+	 * Back end method
+	 */
+	public static String compute(String[] args) {
+		if (args.length == 0) {
+			return getHelpText(); // Returns the help string
+		}
 
-	out.println("  <table align='center'>");
-	out.println("  <tr>");
-	out.println("    <td>");
-	out.println("      <label for='inputStrRaw' style='text-align:center;'>Enter numbers:&emsp;</label>");
-	out.println("    </td><td>");
-	out.println("      <textarea autofocus name='inputStrRaw' id='inputStrRaw' rows='5' cols='30' value='string' placeholder='Enter numbers here' >"+inputStrRaw+"</textarea><br/>");
-	out.println("  </td></tr>");
-	out.println("  <tr>");
-	out.println("    <td>");
-	out.println("    </td><td>");
-	out.println("      <input type='submit' name='Operation' value='Mean'/>");
-	out.println("      &emsp;"); // spacer
-	out.println("      <input type='submit' name='Operation' value='Median'/>");
-	out.println("      &emsp;");
-	out.println("      <input type='submit' name='Operation' value='Mode'/>");
-	out.println("      &emsp;");
-	out.println("      <input type='submit' name='Operation' value='Reset'/>");
-	out.println("  </td></tr>");
-	out.println("  </table>");
+		String ln = null;
+		String sm = null;
+		boolean help = false;
+		boolean interactive = false;
 
-	out.println("  <br/>");
-	out.println("  <br/>");
-	out.println("  <br/>");
-	out.println("  <label for='stringOutput' style='text-align:center;font-weight:bold;font-size:110%'> Result</label><br/>");
-	out.println("  <textarea name='stringOutput' id='stringOutput' cols='90' rows='10' placeholder='---' disabled>" +resultStr+ "  </textarea><br/> ");
-	out.println("</form>");
-	out.println("<br/><br/>");
-	out.println("<p style='font-weight:75%;color:gray'>Jorge Martinez &amp; Jeff Offutt</p>");
-	out.println("</body>");
-    } // End PrintBody
+		for (int i = 0; i < args.length; i++) {
+			String a = args[i];
+			if ("-h".equals(a) || "--help".equals(a)) {
+				help = true;
+			} else if ("-ln".equals(a) || "--list-of-numbers".equals(a)) {
+				if (i + 1 < args.length)
+					ln = args[++i];
+			} else if ("-sm".equals(a) || "--statistics-mode".equals(a)) {
+				if (i + 1 < args.length)
+					sm = args[++i];
+			} else if ("-im".equals(a) || "--interactive-mode".equals(a)) {
+				interactive = true;
+			}
+		}
 
-    /** *****************************************************
-     * Prints the bottom of the HTML page.
-     * Front end method
-     ********************************************************* 
-    private void PrintTail (PrintWriter out)
-    {
-	out.println("");
-	out.println("</html>");
-    } // End PrintTail
-    */
+		if (help) {
+			return getHelpText();
+		}
 
-    /** ====================================================
-	====================================================
-	* 10 methods to process the inputs
-	* 1 front end: doPost(),
-	* 1 principal "main" method: compute()
-	* 2 methods to clean up the inputs
-	*   sanitize(), makeUniform()
-	* 1 method to compute the mean
-	*   getMeanValue()
-	* 2 method to compute the median
-	*   getMedianValue(), medianGetMidValue()
-	* 3 method to compute the mode
-	*   getModeList(), modeGetOrderedMode(), modePopulateMap()
-	====================================================
-	==================================================== **/
-    /** *****************************************************
-     * Converts the values in the form,
-     * performs the operation indicated,
-     * sends the results back to the client.
-     * Front end method
-     ********************************************************* 
-    public void doPost (HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException
-    {
-	response.setContentType("text/html");
-	PrintWriter out = response.getWriter();
+		if (interactive) {
+			runInteractiveMode(); // This handles its own console printing
+			return null; // Return null so main() doesn't print anything extra
+		}
 
-	// get input data
-	String inputStrRaw = request.getParameter("inputStrRaw");
-	String resultStr   = request.getParameter("stringOutput");
-	String operation   = request.getParameter("Operation");
+		if (ln == null || sm == null) {
+			return getHelpText();
+		}
 
-	PrintHead(out);
-	if (operation.equals("Reset"))
-	    PrintBody(out, "", ""); // reprint the form, blank
-	else
-	    {
-		resultStr = compute(inputStrRaw, operation);
-		PrintBody(out, inputStrRaw, resultStr);
-	    }
-	PrintTail(out);
-    }  // End doPost
-	*/
-    /** *****************************************************
-     * Converts the values in the form,
-     * performs the operation indicated,
-     * sends the results back to the client.
-     * Back end method
-     ********************************************************* */
-    private static String compute(String inputStrRaw, String oper)
-    {
-	String averageValueString;
+		String sanitized = sanitize(ln);
+		if (sanitized.isEmpty()) {
+			return "Missing arguments";
+		}
+		String[] nums = sanitized.split(" ");
 
-	String cleanIn = sanitize(inputStrRaw);
-	if (cleanIn.equals(""))
-	    return "";
-	String[] cleanInput = cleanIn.split(" ");
+		int mode;
+		try {
+			mode = Integer.parseInt(sm);
+		} catch (NumberFormatException e) {
+			return "The response is: Invalid option";
+		}
 
-	if (oper==null)
-	    return("I did not find an operation");
+		if (mode < 1 || mode > 6) {
+			return "The response is: Invalid option";
+		}
 
-	switch (oper)
-	    {
-	    case "Mean":
-		averageValueString = Double.toString(getMeanValue(cleanInput));
-		break;
-	    case "Median":
-		averageValueString = Double.toString(getMedianValue(cleanInput));
-		break;
-	    case "Mode": // returns a string; may be more than one number
-		averageValueString = getModeList(cleanInput);
-		break;
-	    default:
-		return("How did you give me an invalid operation?");
-	    }
-	return("The " +oper+ " is: " +averageValueString);
-    }
+		StringBuilder output = new StringBuilder();
 
-    /** *****************************************************
-     * extracts valid strings and returns them in a single space separated string
-     * @param s raw unfiltered string
-     * @return returns valid String or empty string if initial is less than 1
-     * Back end method
-     ********************************************************* */
-    public static String sanitize(String s)
-    {
-	String allowedChars = "(-?[0-9]+\\.[0-9]+)|(-?[0-9]+)"; // allows decimals 12.0 12.00 etc only
-	Pattern pattern = Pattern.compile(allowedChars);
-	Matcher matcher = pattern.matcher(s);
-	String cleanList = "";
-	while (matcher.find())
-	    {
-		cleanList = cleanList+ ' ' +(matcher.group());
-	    }
-	return (cleanList.length()<1)?"":cleanList.substring(1).trim().replaceAll(" +", " ");
-    }
+		switch (mode) {
+			case 1:
+				output.append(String.format("The Mean is: %.1f", getMeanValue(nums)));
+				break;
+			case 2:
+				output.append(String.format("The Median is: %.1f", getMedianValue(nums)));
+				break;
+			case 3:
+				output.append("The Mode is: " + getModeList(nums.clone()));
+				break;
+			case 4:
+				output.append(String.format("The Standard Deviation is: %.1f", getStandardDeviation(nums)));
+				break;
+			case 5:
+				output.append(String.format("The Mean is: %.1f\n", getMeanValue(nums)));
+				output.append(String.format("The Median is: %.1f\n", getMedianValue(nums)));
+				output.append("The Mode is: " + getModeList(nums.clone()) + "\n");
+				output.append(String.format("The Standard Deviation is: %.1f", getStandardDeviation(nums)));
+				break;
+			case 6:
+				output.append("The response is: Good Bye :)");
+				break;
+		}
+		return output.toString();
+	}
 
-    /** *****************************************************
-     * modifies incoming array, replacing all .0 by integer representation
-     * @param numbers arrays with ints or doubles
-     * Back end method
-     ********************************************************* */
-    public static void makeUniform(String [] numbers)
-    {
-	for (int i=0 ; i< numbers.length; i++)
-	    {
-		double db = Double.parseDouble(numbers[i]);
-		numbers[i] = (0==(db - (int)db))? // if its a double of the form _.0
-		    (int)db + "": // then grab the integer part and use that
-		    db + ""; // it was _.xxxx so it was a double and should stay
-	    }
-    }
+	private static String getHelpText() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("java Assignment3\n");
+		sb.append("    Arguments\n");
+		sb.append("        -ln, --list-of-numbers\n");
+		sb.append("            List of numbers to compute statistics with\n\n");
+		sb.append("        -sm, --statistics-mode\n");
+		sb.append("            Statistics to apply to the list of numbers. Options are:\n");
+		sb.append("            1. Calculate Mean\n");
+		sb.append("            2. Calculate Median\n");
+		sb.append("            3. Calculate Mode\n");
+		sb.append("            4. Calculate Standard Deviation\n");
+		sb.append("            5. Print All Computed Averages\n");
+		sb.append("            6. Quit\n\n");
+		sb.append("        -h, --help\n");
+		sb.append("            Prints this message\n\n");
+		sb.append("        -im, --interactive-mode\n");
+		sb.append("            Triggers the interactive mode from Assignment 2\n");
+		return sb.toString();
+	}
 
-    /** *****************************************************
-     * @requires array not empty, otherwise the mean will be zero
-     * @param numbers array of int numbers in a string format
-     * @return the mean or average sum of all numbers divided by number of values
-     * Back end method
-     ********************************************************* */
-    public static double getMeanValue(String [] numbers) throws ArithmeticException
-    {
-	double total = 0.0;
-	if (numbers.length < 1)
-	    return 0;
-	for (String i : numbers)
-	    {
-		total += Double.parseDouble(i);
-		if (total == Double.POSITIVE_INFINITY || total == Double.NEGATIVE_INFINITY)
-		    {
-			throw new ArithmeticException("overflow");
-		    }
-	    }
-	return(total/numbers.length);
-    }
+	/**
+	 * *****************************************************
+	 * extracts valid strings and returns them in a single space separated string
+	 * 
+	 * @param s raw unfiltered string
+	 * @return returns valid String or empty string if initial is less than 1
+	 *         Back end method
+	 */
+	public static String sanitize(String s) {
+		String allowedChars = "(-?[0-9]+\\.[0-9]+)|(-?[0-9]+)"; // allows decimals 12.0 12.00 etc only
+		Pattern pattern = Pattern.compile(allowedChars);
+		Matcher matcher = pattern.matcher(s);
+		String cleanList = "";
+		while (matcher.find()) {
+			cleanList = cleanList + ' ' + (matcher.group());
+		}
+		return (cleanList.length() < 1) ? "" : cleanList.substring(1).trim().replaceAll(" +", " ");
+	}
 
-    /** *****************************************************
-     * Returns the median of an array of numbers
-     * Back end method
-     ********************************************************* */
-    public static double getMedianValue(String [] numbers)
-    {
-	List <Double> doubleList = new ArrayList<>();
-	for (String i : numbers)
-	    doubleList.add(Double.parseDouble(i));
-	Collections.sort(doubleList);
-	int sz = doubleList.size();
-	switch (sz)
-	    {
-	    case 0: //empty list
-		return 0.0;
-	    case 1:
-		return doubleList.get(0); // only one value
-	    }
-	if  (sz % 2 == 0) // the list length is even;
-	    return medianGetMidValue(doubleList, sz);
-	// length is odd so just return the element in the the middle
-	return doubleList.get(sz/2);
-    }  // end getMedianValue()
+	/**
+	 * *****************************************************
+	 * modifies incoming array, replacing all .0 by integer representation
+	 * 
+	 * @param numbers arrays with ints or doubles
+	 *                Back end method
+	 */
+	public static void makeUniform(String[] numbers) {
+		for (int i = 0; i < numbers.length; i++) {
+			double db = Double.parseDouble(numbers[i]);
+			numbers[i] = (0 == (db - (int) db)) ? // if its a double of the form _.0
+					(int) db + "" : // then grab the integer part and use that
+					db + ""; // it was _.xxxx so it was a double and should stay
+		}
+	}
 
-    /** *****************************************************
-     * @param doubleList list of doubles
-     * @param sz size of the list
-     * @return the mid value of 2 numbers
-     * Back end method
-     ********************************************************* */
-    private static double medianGetMidValue(List<Double> doubleList, int sz)
-    {
-	double left  = doubleList.get(sz/2-1);
-	double right = doubleList.get(sz/2);
-	if (left == right)
-	    return left; // could return either
-	//since they are different subtract the smaller from the larger
-	double difference = (left > right)? left-right : right-left;
-	return (left > right)? right+(difference/2) : left+(difference/2);
-    }
+	/**
+	 * *****************************************************
+	 * 
+	 * @requires array not empty, otherwise the mean will be zero
+	 * @param numbers array of int numbers in a string format
+	 * @return the mean or average sum of all numbers divided by number of values
+	 *         Back end method
+	 */
+	public static double getMeanValue(String[] numbers) throws ArithmeticException {
+		double total = 0.0;
+		if (numbers.length < 1)
+			return 0;
+		for (String i : numbers) {
+			total += Double.parseDouble(i);
+			if (total == Double.POSITIVE_INFINITY || total == Double.NEGATIVE_INFINITY) {
+				throw new ArithmeticException("overflow");
+			}
+		}
+		return (total / numbers.length);
+	}
 
-    /** *****************************************************
-     * @param numbers String [] of decimal or int values
-     * @return an array of numbers that occur the most often
-     * Back end method
-     ********************************************************* */
-    public static String getModeList(String [] numbers)
-    {
-	Map <String,Integer> map = new HashMap<>();
-	String mode = "";
-	makeUniform(numbers);
-	modePopulateMap(numbers, map);
-	Integer max =  Collections.max(map.values());
-	for (String k : map.keySet())
-	    {
-		mode = (map.get(k)==max)? mode + " " + k:mode;
-	    }
-	return modeGetOrderedMode(mode);
-    }
+	/**
+	 * *****************************************************
+	 * Returns the median of an array of numbers
+	 * Back end method
+	 */
+	public static double getMedianValue(String[] numbers) {
+		List<Double> doubleList = new ArrayList<>();
+		for (String i : numbers)
+			doubleList.add(Double.parseDouble(i));
+		Collections.sort(doubleList);
+		int sz = doubleList.size();
+		switch (sz) {
+			case 0: // empty list
+				return 0.0;
+			case 1:
+				return doubleList.get(0); // only one value
+		}
+		if (sz % 2 == 0) // the list length is even;
+			return medianGetMidValue(doubleList, sz);
+		// length is odd so just return the element in the the middle
+		return doubleList.get(sz / 2);
+	} // end getMedianValue()
 
-    /** *****************************************************
-     * @param mode unordered mode as a String
-     * @return mode in an array in order
-     * Back end method
-     ********************************************************* */
-    private static String modeGetOrderedMode(String mode)
-    {
+	/**
+	 * *****************************************************
+	 * 
+	 * @param doubleList list of doubles
+	 * @param sz         size of the list
+	 * @return the mid value of 2 numbers
+	 *         Back end method
+	 */
+	private static double medianGetMidValue(List<Double> doubleList, int sz) {
+		double left = doubleList.get(sz / 2 - 1);
+		double right = doubleList.get(sz / 2);
+		if (left == right)
+			return left; // could return either
+		// since they are different subtract the smaller from the larger
+		double difference = (left > right) ? left - right : right - left;
+		return (left > right) ? right + (difference / 2) : left + (difference / 2);
+	}
+
+	/**
+	 * *****************************************************
+	 * 
+	 * @param numbers String [] of decimal or int values
+	 * @return an array of numbers that occur the most often
+	 *         Back end method
+	 */
+	public static String getModeList(String[] numbers) {
+		Map<String, Integer> map = new HashMap<>();
+		String mode = "";
+		makeUniform(numbers);
+		modePopulateMap(numbers, map);
+		Integer max = Collections.max(map.values());
+		for (String k : map.keySet()) {
+			mode = (map.get(k) == max) ? mode + " " + k : mode;
+		}
+		return modeGetOrderedMode(mode);
+	}
+
+	/**
+	 * *****************************************************
+	 * 
+	 * @param mode unordered mode as a String
+	 * @return mode in an array in order
+	 *         Back end method
+	 */
+	private static String modeGetOrderedMode(String mode) {
 		String[] arr = mode.trim().split(" ");
 		List<Double> l = new ArrayList<>();
 		for (String s : arr) {
@@ -328,38 +456,40 @@ public class Assignment3
 		for (int i = 0; i < l.size(); i++) {
 			arr[i] = String.format("%.1f", l.get(i)); // force one decimal
 		}
-		// makeUniform(arr);  // <-- remove this to keep .0
+		// makeUniform(arr); // <-- remove this to keep .0
 		return (Arrays.toString(arr)
 				.replace("[", "")
 				.replace("]", "")
 				.replace(",", " ")
 				.replaceAll(" +", " "));
-    }
+	}
 
-    /** *****************************************************
-     * @param numbers input array with string representing numbers
-     * @param map the map that will be created with the number that represents the
-     *      number of times the value appears in the original Array.
-     * Back end method
-     ********************************************************* */
-    private static void modePopulateMap(String[] numbers, Map<String, Integer> map)
-    {
-	for (String s : numbers)
-	    {
-		if(map.containsKey(s)) // key was present
-		    map.put(s, map.get(s)+1);
-		else
-		    map.put(s,1);
-	    }
-    }
+	/**
+	 * *****************************************************
+	 * 
+	 * @param numbers input array with string representing numbers
+	 * @param map     the map that will be created with the number that represents
+	 *                the
+	 *                number of times the value appears in the original Array.
+	 *                Back end method
+	 */
+	private static void modePopulateMap(String[] numbers, Map<String, Integer> map) {
+		for (String s : numbers) {
+			if (map.containsKey(s)) // key was present
+				map.put(s, map.get(s) + 1);
+			else
+				map.put(s, 1);
+		}
+	}
 
-	/** *****************************************************
-	 * This method  calculates this standard deviation.
+	/**
+	 * *****************************************************
+	 * This method calculates this standard deviation.
+	 * 
 	 * @param numbers the array that is passed in.
 	 * @return standardDeviation or 0.
-	 ****************************************************** */
-	public static double getStandardDeviation(String[] numbers) 
-	{
+	 */
+	public static double getStandardDeviation(String[] numbers) {
 		if (numbers == null || numbers.length < 1) {
 			return 0;
 		}
@@ -368,14 +498,15 @@ public class Assignment3
 		double sumOfSquaredDifferences = 0.0;
 		int validNumbers = 0;
 
-		for (String i : numbers) 
-		{
+		for (String i : numbers) {
 			try {
 				double value = Double.parseDouble(i);
 				double difference = value - mean;
 				sumOfSquaredDifferences = sumOfSquaredDifferences + Math.pow(difference, 2);
 				validNumbers++;
-			} catch (NumberFormatException e) { continue; }
+			} catch (NumberFormatException e) {
+				continue;
+			}
 		}
 
 		if (validNumbers == 0) {
@@ -387,8 +518,7 @@ public class Assignment3
 		return standardDeviation;
 	}
 
-	private static void runInteractiveMode() 
-	{
+	private static void runInteractiveMode() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter numbers (with or without decimal fractions):");
 		String ln = sc.nextLine().trim();
@@ -456,110 +586,124 @@ public class Assignment3
 		System.out.println("            1. Calculate Mean");
 		System.out.println("            2. Calculate Median");
 		System.out.println("            3. Calculate Mode");
-        System.out.println("            4. Calculate Standard Deviation");
+		System.out.println("            4. Calculate Standard Deviation");
 		System.out.println("            5. Print All Computed Averages");
-        System.out.println("            6. Quit");
+		System.out.println("            6. Quit");
 		System.out.println();
 		System.out.println("        -h, --help");
 		System.out.println("            Prints this message");
-        System.out.println();
-        System.out.println("        -im, --interactive-mode");
-        System.out.println("            Triggers the interactive mode from Assignment 2");
+		System.out.println();
+		System.out.println("        -im, --interactive-mode");
+		System.out.println("            Triggers the interactive mode from Assignment 2");
 		System.out.println();
 		System.out.println();
 	}
 
-	/**
-	 * This is the main method, intended for testing and modification purposes.
-	 * @param args command line arguments.
-	 */
 	public static void main(String[] args) {
+		String output = compute(args);
 
-		// CHANGE 1
-		if (args.length == 0) { 
-			printHelp();
-			return;
+		if (output != null) {
+			System.out.print(output);
 		}
-
-		// ln is list of numbers.
-		String ln = null;
-		// sm is statistics mode.
-		String sm = null;
-		boolean help = false;
-		boolean interactive = false;
-
-		for (int i = 0; i < args.length; i++) {
-			String a = args[i];
-			if ("-h".equals(a) || "--help".equals(a)) {
-				// updating help to true
-				help = true;
-			} else if ("-ln".equals(a) || "--list-of-numbers".equals(a)) {
-				if ( i + 1 < args.length) ln = args[++i];
-			} else if ("-sm".equals(a) || "--statistics-mode".equals(a)) {
-				if (i + 1 < args.length) sm = args[++i];
-			} else if ("-im".equals(a) || "--interactive-mode".equals(a)) {
-				interactive = true;
-			}
-		}
-
-		// CHANGE 2
-		if (help) {
-            printHelp();
-			return;
-        }
-
-		if (interactive) {
-			runInteractiveMode();
-			return;
-		}
-
-		if (ln == null || sm == null) {
-			printHelp();
-			return;
-		}
-
-		// CHANGE 3
-		String sanitized = sanitize(ln == null ? "" : ln);
-        if (sanitized.isEmpty()) {
-			// printHelp();
-			System.out.println("Missing arguments");
-            return;
-        }
-        String[] nums = sanitized.split(" ");
-
-		int mode;
-		// CHANGE 5
-        try {
-            mode = Integer.parseInt(sm);
-        } catch (NumberFormatException e) {
-			// printHelp();
-            System.out.println("The response is: Invalid option");
-            return;
-        }
-
-		// CHANGE 4
-        if (mode < 1 || mode > 6) {
-			// printHelp();
-            System.out.println("The response is: Invalid option"); 
-            return;
-        }
-
-		// CHANGE 6
-        switch (mode) {
-			case 1 -> System.out.printf("The Mean is: %.1f%n", getMeanValue(nums));
-			case 2 -> System.out.printf("The Median is: %.1f%n", getMedianValue(nums));
-			case 3 -> System.out.println("The Mode is: " + getModeList(nums.clone()));
-			case 4 -> System.out.printf("The Standard Deviation is: %.1f%n", getStandardDeviation(nums));
-			case 5 -> {
-				System.out.printf("The Mean is: %.1f%n", getMeanValue(nums));
-				System.out.printf("The Median is: %.1f%n", getMedianValue(nums));
-				System.out.println("The Mode is: " + getModeList(nums.clone()));
-				System.out.printf("The Standard Deviation is: %.1f%n", getStandardDeviation(nums));
-			}
-			case 6 -> {
-				System.out.println("The response is: Good Bye :)");
-				return;
-			}
-        }
 	}
-}  // End class
+
+	
+	// /**
+	// * This is the main method, intended for testing and modification purposes.
+	// *
+	// * @param args command line arguments.
+	// */
+	// public static void main(String[] args) {
+
+	// // CHANGE 1
+	// if (args.length == 0) {
+	// printHelp();
+	// return;
+	// }
+
+	// // ln is list of numbers.
+	// String ln = null;
+	// // sm is statistics mode.
+	// String sm = null;
+	// boolean help = false;
+	// boolean interactive = false;
+
+	// for (int i = 0; i < args.length; i++) {
+	// String a = args[i];
+	// if ("-h".equals(a) || "--help".equals(a)) {
+	// // updating help to true
+	// help = true;
+	// } else if ("-ln".equals(a) || "--list-of-numbers".equals(a)) {
+	// if (i + 1 < args.length)
+	// ln = args[++i];
+	// } else if ("-sm".equals(a) || "--statistics-mode".equals(a)) {
+	// if (i + 1 < args.length)
+	// sm = args[++i];
+	// } else if ("-im".equals(a) || "--interactive-mode".equals(a)) {
+	// interactive = true;
+	// }
+	// }
+
+	// // CHANGE 2
+	// if (help) {
+	// printHelp();
+	// return;
+	// }
+
+	// if (interactive) {
+	// runInteractiveMode();
+	// return;
+	// }
+
+	// if (ln == null || sm == null) {
+	// printHelp();
+	// return;
+	// }
+
+	// // CHANGE 3
+	// String sanitized = sanitize(ln == null ? "" : ln);
+	// if (sanitized.isEmpty()) {
+	// // printHelp();
+	// System.out.println("Missing arguments");
+	// return;
+	// }
+	// String[] nums = sanitized.split(" ");
+
+	// int mode;
+	// // CHANGE 5
+	// try {
+	// mode = Integer.parseInt(sm);
+	// } catch (NumberFormatException e) {
+	// // printHelp();
+	// System.out.println("The response is: Invalid option");
+	// return;
+	// }
+
+	// // CHANGE 4
+	// if (mode < 1 || mode > 6) {
+	// // printHelp();
+	// System.out.println("The response is: Invalid option");
+	// return;
+	// }
+
+	// // CHANGE 6
+	// switch (mode) {
+	// case 1 -> System.out.printf("The Mean is: %.1f%n", getMeanValue(nums));
+	// case 2 -> System.out.printf("The Median is: %.1f%n", getMedianValue(nums));
+	// case 3 -> System.out.println("The Mode is: " + getModeList(nums.clone()));
+	// case 4 -> System.out.printf("The Standard Deviation is: %.1f%n",
+	// getStandardDeviation(nums));
+	// case 5 -> {
+	// System.out.printf("The Mean is: %.1f%n", getMeanValue(nums));
+	// System.out.printf("The Median is: %.1f%n", getMedianValue(nums));
+	// System.out.println("The Mode is: " + getModeList(nums.clone()));
+	// System.out.printf("The Standard Deviation is: %.1f%n",
+	// getStandardDeviation(nums));
+	// }
+	// case 6 -> {
+	// System.out.println("The response is: Good Bye :)");
+	// return;
+	// }
+	// }
+	// }
+} // End class

@@ -1,19 +1,25 @@
-+-- compute()
-|
-+-----> sanitize()
-|
-+-----> getMeanValue()
-|
-+-----> getMedianValue()
-|         |
-|         +-----> medianGetMidValue()
-|
-+-----> getModeList()
-          |
-          +-----> makeUniform()
-          |
-          +-----> modePopulateMap()
-          |
-          +-----> modeGetOrderedMode()
-                    |
-                    +-----> makeUniform()
+compute(String[] args)
+├── getHelpText()
+│
+├── runInteractiveMode()
+│   ├── sanitize()
+│   ├── getMeanValue()
+│   ├── getMedianValue()
+│   │   └── medianGetMidValue()
+│   ├── getModeList()
+│   │   ├── makeUniform()
+│   │   ├── modePopulateMap()
+│   │   └── modeGetOrderedMode()
+│   └── getStandardDeviation()
+│       └── getMeanValue()
+│
+├── sanitize()
+├── getMeanValue()
+├── getMedianValue()
+│   └── medianGetMidValue()
+├── getModeList()
+│   ├── makeUniform()
+│   ├── modePopulateMap()
+│   └── modeGetOrderedMode()
+└── getStandardDeviation()
+    └── getMeanValue()
